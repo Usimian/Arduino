@@ -80,7 +80,7 @@ QuickPID myPIDLeftVel(&velLeft, &motorSpeedL, &velOutputL);
 // ***** ARDUINO SETUP *****
 void setup()
 {
-  Serial.begin(9600); // Starting Serial Terminal
+  Serial.begin(115200); // Starting Serial Terminal
   while (!Serial)
     ; // Wait for Serial port to be ready
 
