@@ -1,0 +1,13 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/galactic/lib/python3.8/site-packages"
+    ],
+    "ros.distro": "galactic",
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "arduino.h": "c",
+        "chrono": "cpp",
+        "random": "cpp",
+        "limits": "cpp"
+    }
+}
