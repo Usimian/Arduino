@@ -71,7 +71,7 @@ float Kp = 12, Ki = 3, Kd = .8;    // Distance PID tuning
 float KpV = 1, KiV = 3, KdV = 0.3; // Velocity PID tuning
 
 // Specify PID links
-QuickPID myPIDRight(&encoderValueR, &velOutputR, &encoderSetptR); // Setpt in mm
+QuickPID myPIDRight(&encoderValueR, &velOutputR, &encoderSetptR);   // Setpt in mm
 QuickPID myPIDLeft(&encoderValueL, &velOutputL, &encoderSetptL);
 
 QuickPID myPIDRightVel(&velRight, &motorSpeedR, &velOutputR); // Setpt in mm/sec
@@ -206,12 +206,7 @@ void loop()
     digitalWrite(LED_BUILTIN, LOW); // LED off when motors off
 
   // Command parsing code
-  // unsigned long currentMillis = millis();
-  // if (currentMillis - previousMillis >= interval)   // execute every 'interval' msec
-  // {
-  //   previousMillis = currentMillis;
-
-  if (recvWithStartEndMarkers()) // Get command
+if (recvWithStartEndMarkers()) // Get command
   {
     int cmd = cmdData[0];       // 1 = Read Encoders, 2 = Set Velocity, 3 = Move Distance, 4 = Move Continuous, 5 = Get Move Status
     int motor = cmdData[1];     // 1 = right, 2 = left
@@ -233,9 +228,6 @@ void loop()
       else if (motor == LeftMotor)
         velSetptL = vel; // mm/sec
 
-      // Serial.print("<");
-      // Serial.print("1");
-      // Serial.println(">");
     }
     else if (cmd == MoveDistance) // Motor move fixed distance (mm)
     {
@@ -249,9 +241,6 @@ void loop()
         // ResetEncoders(LeftMotor);
         encoderSetptL = (long)(dist * ticksPerMm);
       }
-      // Serial.print("<");
-      // Serial.print("1");
-      // Serial.println(">");
     }
     else if (cmd == Move) // Motor move continuous
     {
@@ -271,9 +260,6 @@ void loop()
         else
           encoderSetptL = (long)(-100000000 * ticksPerMm); // ticks
       }
-      // Serial.print("<");
-      // Serial.print("1");
-      // Serial.println(">");
     }
     else if (cmd == MoveStatus) // Return true when motor reaches distance setpt
     {
@@ -404,9 +390,6 @@ bool recvWithStartEndMarkers() // Return true when command parsed
       }
       else
       {
-        //        Serial.print("char: ");
-        //        Serial.print(rc);
-        //        Serial.print('\n');
         receivedChars[ndx] = rc;
         ndx = min(ndx + 1, numChars - 1);
       }
